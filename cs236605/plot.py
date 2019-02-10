@@ -5,7 +5,7 @@ import numpy as np
 
 def imshow(img):
     img = img / 2 + 0.5
-    npimg = img.numpy()
+    npimg = img.cpu().numpy()
     plt.imshow(np.transpose(npimg, (1, 2, 0)))
 
 def tensors_as_images(tensors, nrows=1, figsize=(8, 8), titles=[],

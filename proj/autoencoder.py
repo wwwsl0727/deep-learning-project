@@ -196,8 +196,8 @@ class VAE(nn.Module):
         #h_1 = z.reshape(-1, self.z_dim)
         #h_rec = self.ln_rec(z)
         #x_rec = self.ln_rec(h_1)
-
-        h_rec = self.ln_rec(z)
+        device = next(self.parameters()).device
+        h_rec = self.ln_rec(z.to(device))
         h_rec = h_rec.view(h_rec.size(0), *self.h_shape)
         x_rec = self.features_decoder(h_rec)
         # ========================

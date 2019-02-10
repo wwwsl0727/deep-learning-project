@@ -136,8 +136,8 @@ def discriminator_loss_fn(y_data, y_generated, data_label=0, label_noise=0.0):
     # ====== YOUR CODE: ======
     #For real data, data_label=1
     criterion = nn.BCEWithLogitsLoss(weight=None, reduce=False)
-    real_labels = label_noise * torch.rand(y_data.shape) + data_label - (label_noise / 2)
-    fake_labels = label_noise * torch.rand(y_generated.shape) + 1 - data_label - (label_noise / 2)
+    real_labels = label_noise * torch.rand(y_data.shape,device=y_data.device) + data_label - (label_noise / 2)
+    fake_labels = label_noise * torch.rand(y_generated.shape,device=y_data.device) + 1 - data_label - (label_noise / 2)
     loss_data = torch.mean(criterion(y_data,torch.FloatTensor(real_labels)))
     loss_generated = torch.mean(criterion(y_generated,torch.FloatTensor(fake_labels)))
     # ========================
