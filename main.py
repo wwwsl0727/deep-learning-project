@@ -27,7 +27,8 @@ args = parser.parse_args()
 
 if args.model == 'cifar10':
     # CIFAR-10 dataset
-    dataset = torchvision.datasets.CIFAR10(root='../data', train=True,
+    #dataset = torchvision.datasets.CIFAR10(root='../data', train=True,
+    dataset = torchvision.datasets.CIFAR10(root='../data', 
                                            download=True,
                                            transform=torchvision.transforms.Compose([
                                                torchvision.transforms.Resize(32),
@@ -35,8 +36,9 @@ if args.model == 'cifar10':
                                                torchvision.transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]))
 else:
     # STL-10 dataset
-    dataset = torchvision.datasets.STL10(root='../data', train=True,
-                                           download=True,
+    #dataset = torchvision.datasets.STL10(root='../data', train=True,
+    dataset = torchvision.datasets.STL10(root='../data',  
+	                                      download=True,
                                            transform=torchvision.transforms.Compose([
                                                torchvision.transforms.Resize(32),
                                                torchvision.transforms.ToTensor(),
@@ -49,7 +51,7 @@ loader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size,
 # Setting hyper parameter according to the paper
 Z_dim = 128
 adam_alpha = 0.0002
-adam_beta1 = 0.0
+adam_beta1 = 0.5
 adam_beta2 = 0.9
 n_dis = 5 # Number of updates to discriminator for every update to generator
 # step = 100000
